@@ -1,0 +1,473 @@
+/* ============================================================
+   MOOSE ANTICS — style.css
+   Dark. Minimal. Untamed.
+   ============================================================ */
+
+:root {
+  --bg:         #050507;
+  --fg:         #eeebe4;
+  --fg-dim:     rgba(238, 235, 228, 0.55);
+  --accent:     #C8973A;
+  --accent-rgb: 200, 151, 58;
+  --sans:       'Space Grotesk', system-ui, sans-serif;
+  --mono:       'Space Mono', monospace;
+  --ease-out:   cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  height: 100%;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--sans);
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background 0.8s ease, color 0.8s ease;
+}
+
+/* ============================================================
+   CANVAS BACKGROUND
+   ============================================================ */
+
+#bg-canvas {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* ============================================================
+   VIGNETTE
+   ============================================================ */
+
+.vignette {
+  position: fixed;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse at 50% 50%,
+    transparent 35%,
+    rgba(5, 5, 7, 0.7) 100%
+  );
+}
+
+/* ============================================================
+   SCENE / LAYOUT
+   ============================================================ */
+
+.scene {
+  position: relative;
+  z-index: 10;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 2rem;
+  max-width: 560px;
+  width: 100%;
+}
+
+/* ============================================================
+   LOGO / ANTLER MARK
+   ============================================================ */
+
+.logo-mark {
+  width: 72px;
+  color: var(--accent);
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(-12px) scale(0.96);
+  transition:
+    opacity 0.7s var(--ease-out),
+    transform 0.7s var(--ease-out),
+    color 0.5s ease;
+  user-select: none;
+  outline: none;
+  position: relative;
+}
+
+.logo-mark.visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.logo-mark:hover .antler {
+  filter: drop-shadow(0 0 12px rgba(var(--accent-rgb), 0.5));
+  transform: scale(1.04);
+}
+
+.antler {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: filter 0.4s ease, transform 0.4s var(--ease-out);
+  animation: breathe 6s ease-in-out infinite;
+}
+
+@keyframes breathe {
+  0%, 100% { transform: scale(1); }
+  50%       { transform: scale(1.025); }
+}
+
+/* ============================================================
+   BRAND NAME
+   ============================================================ */
+
+.brand {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  opacity: 0;
+  transform: translateY(10px);
+  transition:
+    opacity 0.7s var(--ease-out),
+    transform 0.7s var(--ease-out);
+}
+
+.brand.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.brand-name {
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: clamp(1.35rem, 4.5vw, 2.1rem);
+  letter-spacing: 0.38em;
+  color: var(--fg);
+  line-height: 1;
+  position: relative;
+  /* Pulled left to optically compensate for tracking */
+  margin-left: 0.38em;
+}
+
+.tagline {
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.22em;
+  text-transform: lowercase;
+  color: var(--accent);
+  opacity: 0.85;
+  transition: color 0.5s ease;
+}
+
+/* ============================================================
+   RULE
+   ============================================================ */
+
+.rule {
+  width: 1px;
+  height: 40px;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    rgba(var(--accent-rgb), 0.4),
+    transparent
+  );
+  opacity: 0;
+  transition: opacity 0.8s ease, background 0.5s ease;
+}
+
+.rule.visible {
+  opacity: 1;
+}
+
+/* ============================================================
+   QUOTE
+   ============================================================ */
+
+.quote-block {
+  max-width: 460px;
+  opacity: 0;
+  transform: translateY(10px);
+  transition:
+    opacity 0.9s var(--ease-out),
+    transform 0.9s var(--ease-out);
+}
+
+.quote-block.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.quote {
+  font-size: clamp(0.9rem, 2vw, 1.08rem);
+  font-weight: 300;
+  line-height: 1.85;
+  color: var(--fg-dim);
+  font-style: normal;
+  letter-spacing: 0.01em;
+}
+
+/* ============================================================
+   GRAIN OVERLAY
+   ============================================================ */
+
+.grain-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  pointer-events: none;
+  opacity: 0.038;
+  background-repeat: repeat;
+  background-size: 200px 200px;
+  animation: grain-shift 0.55s steps(1) infinite;
+}
+
+@keyframes grain-shift {
+  0%   { background-position:   0px   0px; }
+  14%  { background-position: -38px -14px; }
+  28%  { background-position:  16px -28px; }
+  42%  { background-position: -22px  18px; }
+  57%  { background-position:  44px -6px;  }
+  71%  { background-position: -10px  32px; }
+  85%  { background-position:  28px  10px; }
+  100% { background-position:   0px   0px; }
+}
+
+/* ============================================================
+   EASTER EGG OVERLAY
+   ============================================================ */
+
+.egg-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.6s ease;
+  padding: 3rem;
+  text-align: center;
+}
+
+.egg-overlay.open {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.egg-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+  align-items: center;
+}
+
+.egg-message {
+  font-size: clamp(1.4rem, 4vw, 2.4rem);
+  font-weight: 300;
+  line-height: 1.55;
+  color: var(--accent);
+  max-width: 600px;
+  letter-spacing: 0.02em;
+  animation: egg-pulse 3s ease-in-out infinite;
+}
+
+@keyframes egg-pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.7; }
+}
+
+.egg-dismiss {
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.18em;
+  color: var(--fg-dim);
+  opacity: 0.5;
+}
+
+/* ============================================================
+   RARE EVENT — GLITCH
+   ============================================================ */
+
+@keyframes glitch-clip-a {
+  0%   { clip-path: inset(0 0 96% 0); }
+  20%  { clip-path: inset(14% 0 70% 0); }
+  40%  { clip-path: inset(52% 0 30% 0); }
+  60%  { clip-path: inset(8%  0 85% 0); }
+  80%  { clip-path: inset(68% 0 12% 0); }
+  100% { clip-path: inset(0 0 96% 0); }
+}
+
+@keyframes glitch-clip-b {
+  0%   { clip-path: inset(80% 0 2% 0); }
+  20%  { clip-path: inset(40% 0 48% 0); }
+  40%  { clip-path: inset(62% 0 20% 0); }
+  60%  { clip-path: inset(22% 0 66% 0); }
+  80%  { clip-path: inset(5%  0 88% 0); }
+  100% { clip-path: inset(80% 0 2% 0); }
+}
+
+@keyframes glitch-shift {
+  0%, 100% { transform: translateX(0); }
+  25%       { transform: translateX(-3px); }
+  75%       { transform: translateX(3px); }
+}
+
+.rare-glitch .brand-name {
+  animation: glitch-shift 4s steps(2) infinite;
+}
+
+.rare-glitch .brand-name::before,
+.rare-glitch .brand-name::after {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  width: 100%;
+}
+
+.rare-glitch .brand-name::before {
+  color: #ff2d55;
+  animation: glitch-clip-a 3.5s steps(1) infinite, glitch-shift 3.5s steps(2) infinite;
+  animation-delay: 0s, 0.1s;
+  opacity: 0.75;
+  transform: translateX(-2px);
+}
+
+.rare-glitch .brand-name::after {
+  color: #00e5ff;
+  animation: glitch-clip-b 3.2s steps(1) infinite, glitch-shift 3.2s steps(2) infinite;
+  animation-delay: 0.15s, 0.3s;
+  opacity: 0.75;
+  transform: translateX(2px);
+}
+
+.rare-glitch .antler {
+  filter: drop-shadow(0 0 6px rgba(255, 45, 85, 0.5)) drop-shadow(0 0 6px rgba(0, 229, 255, 0.5));
+  animation: breathe 6s ease-in-out infinite, antler-glitch 5s steps(1) infinite;
+}
+
+@keyframes antler-glitch {
+  0%, 90%, 100% { transform: none; }
+  92%           { transform: translate(-4px, 1px); filter: drop-shadow(-4px 0 #ff2d55); }
+  94%           { transform: translate(4px, -1px); filter: drop-shadow(4px 0 #00e5ff); }
+  96%           { transform: none; }
+}
+
+/* ============================================================
+   RARE EVENT — WHITE ROOM (inverted mood)
+   ============================================================ */
+
+.rare-white {
+  --bg:     #f4f1ea;
+  --fg:     #0a0a0c;
+  --fg-dim: rgba(10, 10, 12, 0.6);
+  background: var(--bg);
+  color: var(--fg);
+}
+
+.rare-white .vignette {
+  background: radial-gradient(
+    ellipse at 50% 50%,
+    transparent 40%,
+    rgba(200, 190, 175, 0.5) 100%
+  );
+}
+
+/* ============================================================
+   RARE EVENT — ALT LAYOUT (asymmetric / editorial)
+   ============================================================ */
+
+.rare-alt .scene {
+  align-items: flex-end;
+  justify-content: flex-start;
+  padding: clamp(2rem, 6vw, 5rem);
+}
+
+.rare-alt .content {
+  align-items: flex-start;
+  text-align: left;
+  max-width: 70vw;
+  gap: 1.5rem;
+}
+
+.rare-alt .quote {
+  font-size: clamp(1.3rem, 3.5vw, 2.2rem);
+  font-weight: 300;
+  line-height: 1.5;
+  color: var(--fg);
+}
+
+.rare-alt .brand-name {
+  font-size: clamp(0.7rem, 1.5vw, 1rem);
+  letter-spacing: 0.3em;
+}
+
+.rare-alt .tagline {
+  display: none;
+}
+
+.rare-alt .logo-mark {
+  width: 40px;
+  position: fixed;
+  top: clamp(1.5rem, 4vw, 3rem);
+  right: clamp(1.5rem, 4vw, 3rem);
+}
+
+.rare-alt .rule {
+  display: none;
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+@media (max-width: 480px) {
+  .logo-mark {
+    width: 58px;
+  }
+
+  .content {
+    gap: 1.6rem;
+    padding: 0 0.5rem;
+  }
+
+  .rule {
+    height: 28px;
+  }
+
+  .rare-alt .content {
+    max-width: 90vw;
+  }
+
+  .rare-alt .quote {
+    font-size: clamp(1.1rem, 5vw, 1.5rem);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .antler,
+  .grain-overlay {
+    animation: none;
+  }
+
+  .logo-mark,
+  .brand,
+  .quote-block,
+  .rule {
+    transition: opacity 0.3s ease;
+  }
+}

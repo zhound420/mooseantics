@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Moose Antics — Moose on the Loose">
+  <title>Moose Antics</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&family=Space+Mono:wght@400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <canvas id="bg-canvas"></canvas>
+  <div class="vignette"></div>
+
+  <main class="scene" id="scene">
+    <div class="content" id="content">
+
+      <div class="logo-mark" id="logo-mark" role="button" aria-label="Moose Antics logo" tabindex="0">
+        <svg class="antler" viewBox="0 0 120 112" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <!-- Skull base -->
+          <rect x="47" y="87" width="26" height="23" rx="6" fill="currentColor"/>
+
+          <!-- Left main beam -->
+          <path d="M52 89 C46 69 29 47 20 22" stroke="currentColor" stroke-width="5" stroke-linecap="round" fill="none"/>
+
+          <!-- Left brow tine -->
+          <path d="M36 58 L12 52" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+
+          <!-- Left palm tines -->
+          <path d="M20 22 L4 4"   stroke="currentColor" stroke-width="3"   stroke-linecap="round" fill="none"/>
+          <path d="M20 22 L13 1"  stroke="currentColor" stroke-width="3"   stroke-linecap="round" fill="none"/>
+          <path d="M20 22 L23 1"  stroke="currentColor" stroke-width="3"   stroke-linecap="round" fill="none"/>
+          <path d="M20 22 L33 10" stroke="currentColor" stroke-width="3"   stroke-linecap="round" fill="none"/>
+
+          <!-- Left palm bar (palmate connector) -->
+          <path d="M5 16 L32 14"  stroke="currentColor" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+
+          <!-- Right main beam (mirrored) -->
+          <path d="M68 89 C74 69 91 47 100 22" stroke="currentColor" stroke-width="5" stroke-linecap="round" fill="none"/>
+
+          <!-- Right brow tine -->
+          <path d="M84 58 L108 52" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+
+          <!-- Right palm tines -->
+          <path d="M100 22 L116 4"   stroke="currentColor" stroke-width="3" stroke-linecap="round" fill="none"/>
+          <path d="M100 22 L107 1"   stroke="currentColor" stroke-width="3" stroke-linecap="round" fill="none"/>
+          <path d="M100 22 L97 1"    stroke="currentColor" stroke-width="3" stroke-linecap="round" fill="none"/>
+          <path d="M100 22 L87 10"   stroke="currentColor" stroke-width="3" stroke-linecap="round" fill="none"/>
+
+          <!-- Right palm bar -->
+          <path d="M115 16 L88 14" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+        </svg>
+      </div>
+
+      <div class="brand">
+        <h1 class="brand-name" data-text="MOOSE ANTICS">MOOSE ANTICS</h1>
+        <p class="tagline">moose on the loose</p>
+      </div>
+
+      <div class="rule"></div>
+
+      <div class="quote-block">
+        <p class="quote" id="quote"></p>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Film grain overlay -->
+  <div class="grain-overlay" id="grain-overlay"></div>
+
+  <!-- Easter egg overlay -->
+  <div class="egg-overlay" id="egg-overlay">
+    <div class="egg-inner">
+      <p class="egg-message" id="egg-message"></p>
+      <p class="egg-dismiss">— click anywhere to return —</p>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
